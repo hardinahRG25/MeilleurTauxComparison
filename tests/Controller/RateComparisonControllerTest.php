@@ -13,7 +13,6 @@ class RateComparisonControllerTest extends WebTestCase
     {
         $client = static::createClient();
         
-        // Mock du service RateComparisonService
         $rateServiceMock = $this->createMock(RateComparisonService::class);
         $rateServiceMock->method('getOffers')->willReturn([
             ['bank' => 'Bank A', 'rate' => 3.5],
@@ -22,10 +21,8 @@ class RateComparisonControllerTest extends WebTestCase
 
         $client->getContainer()->set(RateComparisonService::class, $rateServiceMock);
 
-        // Accède à la page de comparaison (GET)
         $client->request(Request::METHOD_GET, '/compare');
         
-        // Vérifie le statut de la réponse et le rendu du formulaire
         $this->assertResponseIsSuccessful();
         $this->assertSelectorExists('form[name="rate_comparison"]');
     }
@@ -34,7 +31,6 @@ class RateComparisonControllerTest extends WebTestCase
     {
         $client = static::createClient();
         
-        // Mock du service RateComparisonService pour retourner des offres fictives
         $rateServiceMock = $this->createMock(RateComparisonService::class);
         $rateServiceMock->method('getOffers')->willReturn([
             ['bank' => 'Bank A', 'rate' => 3.5],
@@ -43,23 +39,20 @@ class RateComparisonControllerTest extends WebTestCase
 
         $client->getContainer()->set(RateComparisonService::class, $rateServiceMock);
 
-        // Soumettre le formulaire avec des données de test
         $crawler = $client->request(Request::METHOD_GET, '/compare');
         
-        // Sélectionne le bouton de soumission avec le texte exact "Comparer les offres"
         $form = $crawler->selectButton('Comparer les offres')->form();
 
-        // Remplit les champs du formulaire avec des valeurs valides
+  
         $form['rate_comparison[loan_amount]'] = 100000;
         $form['rate_comparison[loan_duration]'] = 20;
         $form['rate_comparison[name]'] = 'John Doe';
         $form['rate_comparison[email]'] = 'john.doe@example.com';
         $form['rate_comparison[phone]'] = '+1234567890';
 
-        // Soumet le formulaire
+
         $client->submit($form);
 
-        // Vérifie que la page s'est bien chargée et qu'elle contient des offres
         $this->assertResponseIsSuccessful();
         $this->assertSelectorExists('.offer');
     }
@@ -68,7 +61,7 @@ class RateComparisonControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        // Mock du service RateComparisonService pour retourner des offres fictives
+        // Return fake data
         $rateServiceMock = $this->createMock(RateComparisonService::class);
         $rateServiceMock->method('getOffers')->willReturn([
             ['bank' => 'Bank A', 'rate' => 3.5],
@@ -77,7 +70,7 @@ class RateComparisonControllerTest extends WebTestCase
 
         $client->getContainer()->set(RateComparisonService::class, $rateServiceMock);
 
-        // Requête POST à l'API
+        // request POST to API
         $client->request(Request::METHOD_POST, '/api/compare', [], [], ['CONTENT_TYPE' => 'application/json'], json_encode([
             'loan_amount' => 100000,
             'loan_duration' => 20
