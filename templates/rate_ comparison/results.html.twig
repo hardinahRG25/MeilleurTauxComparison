@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Résultats de la Comparaison
+{% endblock %}
+
+{% block body %}
+	<h1>Résultats de la Comparaison de Taux</h1>
+
+	{% if offers is not empty %}
+		<table>
+			<thead>
+				<tr>
+					<th>Banque</th>
+					<th>Montant du Prêt</th>
+					<th>Durée</th>
+					<th>Taux</th>
+					<th>Mensualité</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for offer in offers %}
+					<tr>
+						<td>{{ offer.bank_name }}</td>
+						<td>{{ offer.loan_amount }}€</td>
+						<td>
+							{{ offer.loan_duration }}
+							ans
+						</td>
+						<td>
+							{{ offer.loan_rate }}
+							%
+						</td>
+						<td>
+							{# {{ offer.monthly_payment }} #}
+							€
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	{% else %}
+		<p>Aucune offre trouvée pour les critères spécifiés.</p>
+	{% endif %}
+	<a href="{{ path('compare_rates') }}">Retour à la page de comparaison</a>
+{% endblock %}

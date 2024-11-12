@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Comparaison de Taux
+{% endblock %}
+
+{% block body %}
+	<h1>Comparateur de Taux</h1>
+
+	{{ form_start(form) }}
+	
+	<div>
+		{{ form_label(form.name, 'Nom') }}
+		{{ form_widget(form.name) }}
+	</div>
+	<div>
+		{{ form_label(form.email, 'Email') }}
+		{{ form_widget(form.email) }}
+	</div>
+	<div>
+		{{ form_label(form.phone, 'Téléphone') }}
+		{{ form_widget(form.phone) }}
+	</div>
+	<div>
+		{{ form_label(form.loan_amount, 'Montant du prêt') }}
+		{{ form_widget(form.loan_amount) }}
+	</div>
+	<div>
+		{{ form_label(form.loan_duration, 'Durée du prêt (en années)') }}
+		{{ form_widget(form.loan_duration) }}
+	</div>
+
+	<button type="submit">Comparer les offres</button>
+	{{ form_end(form) }}
+{% endblock %}
