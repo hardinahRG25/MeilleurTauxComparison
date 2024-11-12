@@ -75,3 +75,6 @@ web : http://localhost:XXXX/compare (XXXX : port) => http://localhost:8000/compa
 
 # **Credits**
 Hardinah RAJAONANIRINA
+hardinah.rajaonanirina@gmail.com
+
+End
