@@ -1,33 +1,100 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Comparaison de Taux
-{% endblock %}
+{% block title %}Comparaison de Taux{% endblock %}
 
 {% block body %}
-	<h1>Comparateur de Taux</h1>
+    <h1>Comparateur de Taux</h1>
 
-	{{ form_start(form) }}
-	<div>
-		{{ form_label(form.loan_amount, 'Montant du prêt') }}
-		{{ form_widget(form.loan_amount) }}
-	</div>
-	<div>
-		{{ form_label(form.loan_duration, 'Durée du prêt (en années)') }}
-		{{ form_widget(form.loan_duration) }}
-	</div>
-	<div>
-		{{ form_label(form.name, 'Nom') }}
-		{{ form_widget(form.name) }}
-	</div>
-	<div>
-		{{ form_label(form.email, 'Email') }}
-		{{ form_widget(form.email) }}
-	</div>
-	<div>
-		{{ form_label(form.phone, 'Téléphone') }}
-		{{ form_widget(form.phone) }}
-	</div>
+    {{ form_start(form) }}
+    <div class="form-container">
+        <div class="form-group">
+            {{ form_label(form.loan_amount, 'Montant du prêt') }}
+            {{ form_widget(form.loan_amount, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(form.loan_duration, 'Durée du prêt (en années)') }}
+            {{ form_widget(form.loan_duration, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(form.name, 'Nom') }}
+            {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(form.email, 'Email') }}
+            {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(form.phone, 'Téléphone') }}
+            {{ form_widget(form.phone, {'attr': {'class': 'form-control'}}) }}
+        </div>
 
-	<button type="submit">Comparer les offres</button>
-	{{ form_end(form) }}
+        <button type="submit" class="btn-submit">Comparer les offres</button>
+    </div>
+    {{ form_end(form) }}
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+
+        .form-container {
+            width: 60%;
+            margin: 20px auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #3498db;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .form-control:focus {
+            border-color: #3498db;
+            outline: none;
+            box-shadow: 0 0 5px rgba(52, 152, 219, 0.2);
+        }
+
+        .btn-submit {
+            display: inline-block;
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            color: #ffffff;
+            background-color: #3498db;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .btn-submit:hover {
+            background-color: #2c80b4;
+        }
+    </style>
 {% endblock %}
